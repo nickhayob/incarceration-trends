@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incarceration Trends, 2000&ndash;2019</title>
+<meta name="description" content="A county-level look at jail and prison populations in the United States, 2000-2019, built from Vera Institute of Justice data.">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container">
+    <a class="brand" href="index.html">Incarceration Trends</a>
+    <div class="links">
+      <a href="index.html" aria-current="page">Report</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <header class="report-header">
+    <h1>Incarceration Trends: What County Jail Data Reveals, 2000&ndash;2019</h1>
+    <p class="byline">[Your Name] &middot; [Student ID]</p>
+    <p class="summary">
+      This report covers jail and prison populations for nearly 3,000 U.S. counties from
+      2000 through 2019, drawn from the Vera Institute of Justice's Incarceration Trends
+      dataset. Over those two decades, local jails grew even as state prisons leveled off,
+      a stark and only slowly narrowing racial gap persisted in who gets jailed, rural
+      counties and the South jailed people at far higher rates than cities and the
+      Northeast, and a growing majority of the people held in jail on any given day had
+      not been convicted of a crime.
+    </p>
+  </header>
+
+  <section class="stat-grid" id="headline-stats" aria-label="Headline numbers">
+    <div class="stat-tile"><div class="value">732,033</div><div class="label">Average daily jail population, 2019</div></div>
+    <div class="stat-tile"><div class="value">3.11&times;</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div></div>
+    <div class="stat-tile"><div class="value">63.3%</div><div class="label">Share of jail population awaiting trial, 2019</div></div>
+    <div class="stat-tile"><div class="value">2,986</div><div class="label">Counties tracked, 2000&ndash;2019</div></div>
+    <div class="stat-tile"><div class="value">23.0%</div><div class="label">Counties over rated jail capacity, 2019</div></div>
+  </section>
+
+  <section class="finding" id="jail-vs-prison">
+    <h2>Local jails grew even as state prisons leveled off</h2>
+    <p>Between 2000 and 2019, the average daily jail population nationwide rose 19.4%,
+      from 613,162 to 732,033 people. Over the same period, the state and federal prison
+      population grew far more slowly, 7.2%, from 981,582 to 1,052,607.</p>
+    <p>The story of incarceration growth in this century is increasingly a story about
+      county jails, not state prisons.</p>
+    <div class="chart-card"><canvas data-chart="jail-vs-prison" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="racial-gap">
+    <h2>A stark racial gap in who is jailed</h2>
+    <p>In 2019, Black adults were jailed at a rate of 822 per 100,000, more than three
+      times the White rate of 265 per 100,000. Native American adults were also jailed at
+      an elevated rate of 575 per 100,000, while Latinx adults were jailed at about the
+      same rate as White adults (262 per 100,000), and AAPI adults were jailed at a much
+      lower rate of 41 per 100,000.</p>
+    <p>These rates are per 100,000 adults age 15&ndash;64 of each group, not raw counts,
+      so they are directly comparable across groups of very different sizes.</p>
+    <div class="chart-card"><canvas data-chart="racial-gap" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="narrowing-gap">
+    <h2>The Black&ndash;white jail gap has narrowed, but slowly</h2>
+    <p>The ratio between Black and White jail incarceration rates fell from 5.56&times; in
+      2000 to 3.11&times; in 2019. The gap has closed steadily over two decades, but Black
+      adults were still jailed at more than three times the White rate as of the most
+      recent complete year.</p>
+    <div class="chart-card"><canvas data-chart="narrowing-gap" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="rural-rate">
+    <h2>Rural counties jail people at more than double the urban rate</h2>
+    <p>In 2019, rural counties jailed people at a rate of 581 per 100,000 adults, more than
+      double the urban rate of 271 per 100,000. Small and mid-sized counties sat in between
+      at 415 per 100,000, while suburban counties had the lowest rate of the four, 267 per
+      100,000.</p>
+    <p>This pattern is well documented in criminal justice research: rural areas tend to
+      have fewer pretrial services and diversion alternatives, so jail is used more often
+      as a default.</p>
+    <div class="chart-card"><canvas data-chart="rural-rate" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="regional-gap">
+    <h2>Geography matters: the South jails at twice the Northeast's rate</h2>
+    <p>In 2019, the South had a jail incarceration rate of 476 per 100,000 adults, roughly
+      double the Northeast's rate of 232 per 100,000. The West (295) and Midwest (285) fell
+      in between.</p>
+    <div class="chart-card"><canvas data-chart="regional-gap" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="pretrial-share">
+    <h2>Most people sitting in jail haven't been convicted of anything</h2>
+    <p>The share of the jail population held pretrial, meaning charged but not yet
+      convicted, rose from 54.7% in 2000 to 63.3% in 2019. By the most recent complete
+      year, nearly two out of every three people in jail on a given day were legally
+      presumed innocent.</p>
+    <div class="chart-card"><canvas data-chart="pretrial-share" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="gender-share">
+    <h2>Women are a small but fast-growing share of the jail population</h2>
+    <p>Women made up 11.8% of the jail population in 2000, rising to 14.5% by 2019. Men
+      remain the large majority of people in jail, but the female share has grown in
+      nearly every year of the last two decades.</p>
+    <div class="chart-card"><canvas data-chart="gender-share" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="overcrowding">
+    <h2>Nearly a quarter of counties are jailing more people than their jails are built for</h2>
+    <p>Comparing 2019 jail populations to each jail's rated capacity, 23.0% of the 2,796
+      counties reporting a rated capacity exceeded it, and the national average
+      utilization was 88.4% of rated capacity.</p>
+    <div class="chart-card"><canvas data-chart="overcrowding" height="260"></canvas></div>
+  </section>
+
+  <section class="finding" id="outlier-counties">
+    <h2>A handful of counties post incarceration rates far above the national average</h2>
+    <p>The national incarceration rate (jail plus prison) was about 797 per 100,000 adults
+      in 2019. Among counties with at least 50,000 working-age adults, the highest rate was
+      in Bowie County, TX at 3,787 per 100,000 &mdash; nearly 5 times the national rate.</p>
+    <div class="chart-card"><canvas data-chart="outlier-counties" height="320"></canvas></div>
+  </section>
+
+  <section class="methodology">
+    <h2>About this data</h2>
+    <p>The data comes from the <a href="https://github.com/vera-institute/incarceration-trends" target="_blank" rel="noopener">Vera Institute of Justice's Incarceration Trends dataset</a>,
+      compiled from the U.S. Department of Justice's Bureau of Justice Statistics along with
+      state and local agencies. <strong>One row is one U.S. county in one year</strong>,
+      holding that county's jail population, prison population, and demographic breakdowns
+      of each.</p>
+    <p>The published file spans 1970&ndash;2026 across 3,075 counties (128,507 rows), but
+      reporting is inconsistent outside a reliable core window. This report uses only
+      <strong>2000&ndash;2019</strong>: 67,576 rows fell outside that window and were
+      dropped, and a further 3,150 rows inside the window were dropped because the county
+      did not report a jail population figure that year. That leaves 57,781 county-year
+      rows across 2,986 counties and 20 years.</p>
+    <p><strong>How every rate, ratio, and share in this report is computed:</strong></p>
+    <dl>
+      <dt>Rate per 100,000</dt>
+      <dd>(sum of a group's jail or incarcerated population &divide; sum of that group's
+        population age 15&ndash;64) &times; 100,000, summed across whatever counties/years
+        are in view &mdash; not an average of each county's individual rate.</dd>
+      <dt>Ratio (e.g. Black:White)</dt>
+      <dd>one group's rate per 100,000 &divide; another group's rate per 100,000.</dd>
+      <dt>Share / percentage</dt>
+      <dd>(sum of the subgroup, e.g. pretrial or female, &divide; sum of the total jail
+        population) &times; 100.</dd>
+      <dt>Capacity utilization</dt>
+      <dd>total jail population &divide; jail rated capacity, for counties reporting a
+        rated capacity greater than zero.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Data: Vera Institute of Justice, Incarceration Trends &middot; Built with Chart.js
+  </div>
+</footer>
+
+<script src="js/report.js"></script>
+</body>
+</html>
