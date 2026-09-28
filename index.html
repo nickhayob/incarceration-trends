@@ -6,16 +6,36 @@
 <title>Incarceration Trends, 2000&ndash;2019</title>
 <meta name="description" content="A county-level look at jail and prison populations in the United States, 2000-2019, built from Vera Institute of Justice data.">
 <link rel="stylesheet" href="css/style.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
 </head>
 <body>
 <nav class="site-nav">
   <div class="container">
     <a class="brand" href="index.html">Incarceration Trends</a>
-    <div class="links">
-      <a href="index.html" aria-current="page">Report</a>
-      <a href="dashboard.html">Dashboard</a>
+    <div class="right">
+      <div class="links">
+        <a href="index.html" aria-current="page">Report</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="icon-light">&#9728;&#65039;</span><span class="icon-dark">&#127769;</span>
+      </button>
     </div>
+  </div>
+</nav>
+<nav class="section-nav" aria-label="Jump to finding">
+  <div class="container">
+    <a href="#jail-vs-prison" style="--active-color:var(--series-1)">Jails vs. prisons</a>
+    <a href="#racial-gap" style="--active-color:var(--series-2)">Racial gap</a>
+    <a href="#narrowing-gap" style="--active-color:var(--series-3)">Narrowing gap</a>
+    <a href="#rural-rate" style="--active-color:var(--series-4)">Rural rate</a>
+    <a href="#regional-gap" style="--active-color:var(--series-5)">Regional gap</a>
+    <a href="#pretrial-share" style="--active-color:var(--series-6)">Pretrial share</a>
+    <a href="#gender-share" style="--active-color:var(--series-7)">Gender</a>
+    <a href="#overcrowding" style="--active-color:var(--series-8)">Overcrowding</a>
+    <a href="#outlier-counties" style="--active-color:var(--series-1)">Outliers</a>
+    <a href="#about-data" style="--active-color:var(--series-3)">About the data</a>
   </div>
 </nav>
 
@@ -35,15 +55,15 @@
   </header>
 
   <section class="stat-grid" id="headline-stats" aria-label="Headline numbers">
-    <div class="stat-tile"><div class="value">732,033</div><div class="label">Average daily jail population, 2019</div></div>
-    <div class="stat-tile"><div class="value">3.11&times;</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div></div>
-    <div class="stat-tile"><div class="value">63.3%</div><div class="label">Share of jail population awaiting trial, 2019</div></div>
-    <div class="stat-tile"><div class="value">2,986</div><div class="label">Counties tracked, 2000&ndash;2019</div></div>
-    <div class="stat-tile"><div class="value">23.0%</div><div class="label">Counties over rated jail capacity, 2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-1)"><div class="value" data-count-to="732033">0</div><div class="label">Average daily jail population, 2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-2)"><div class="value" data-count-to="3.11" data-suffix="&times;" data-decimals="2">0</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-3)"><div class="value" data-count-to="63.3" data-suffix="%" data-decimals="1">0</div><div class="label">Share of jail population awaiting trial, 2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-4)"><div class="value" data-count-to="2986">0</div><div class="label">Counties tracked, 2000&ndash;2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-5)"><div class="value" data-count-to="23.0" data-suffix="%" data-decimals="1">0</div><div class="label">Counties over rated jail capacity, 2019</div></div>
   </section>
 
-  <section class="finding" id="jail-vs-prison">
-    <h2>Local jails grew even as state prisons leveled off</h2>
+  <section class="finding" id="jail-vs-prison" style="--accent:var(--series-1)">
+    <h2><span class="finding-badge">1</span>Local jails grew even as state prisons leveled off</h2>
     <p>Between 2000 and 2019, the average daily jail population nationwide rose 19.4%,
       from 613,162 to 732,033 people. Over the same period, the state and federal prison
       population grew far more slowly, 7.2%, from 981,582 to 1,052,607.</p>
@@ -52,8 +72,8 @@
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="jail-vs-prison"></canvas></div></div>
   </section>
 
-  <section class="finding" id="racial-gap">
-    <h2>A stark racial gap in who is jailed</h2>
+  <section class="finding" id="racial-gap" style="--accent:var(--series-2)">
+    <h2><span class="finding-badge">2</span>A stark racial gap in who is jailed</h2>
     <p>In 2019, Black adults were jailed at a rate of 822 per 100,000, more than three
       times the White rate of 265 per 100,000. Native American adults were also jailed at
       an elevated rate of 575 per 100,000, while Latinx adults were jailed at about the
@@ -64,8 +84,8 @@
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="racial-gap"></canvas></div></div>
   </section>
 
-  <section class="finding" id="narrowing-gap">
-    <h2>The Black&ndash;white jail gap has narrowed, but slowly</h2>
+  <section class="finding" id="narrowing-gap" style="--accent:var(--series-3)">
+    <h2><span class="finding-badge">3</span>The Black&ndash;white jail gap has narrowed, but slowly</h2>
     <p>The ratio between Black and White jail incarceration rates fell from 5.56&times; in
       2000 to 3.11&times; in 2019. The gap has closed steadily over two decades, but Black
       adults were still jailed at more than three times the White rate as of the most
@@ -73,8 +93,8 @@
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="narrowing-gap"></canvas></div></div>
   </section>
 
-  <section class="finding" id="rural-rate">
-    <h2>Rural counties jail people at more than double the urban rate</h2>
+  <section class="finding" id="rural-rate" style="--accent:var(--series-4)">
+    <h2><span class="finding-badge">4</span>Rural counties jail people at more than double the urban rate</h2>
     <p>In 2019, rural counties jailed people at a rate of 581 per 100,000 adults, more than
       double the urban rate of 271 per 100,000. Small and mid-sized counties sat in between
       at 415 per 100,000, while suburban counties had the lowest rate of the four, 267 per
@@ -85,16 +105,16 @@
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="rural-rate"></canvas></div></div>
   </section>
 
-  <section class="finding" id="regional-gap">
-    <h2>Geography matters: the South jails at twice the Northeast's rate</h2>
+  <section class="finding" id="regional-gap" style="--accent:var(--series-5)">
+    <h2><span class="finding-badge">5</span>Geography matters: the South jails at twice the Northeast's rate</h2>
     <p>In 2019, the South had a jail incarceration rate of 476 per 100,000 adults, roughly
       double the Northeast's rate of 232 per 100,000. The West (295) and Midwest (285) fell
       in between.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="regional-gap"></canvas></div></div>
   </section>
 
-  <section class="finding" id="pretrial-share">
-    <h2>Most people sitting in jail haven't been convicted of anything</h2>
+  <section class="finding" id="pretrial-share" style="--accent:var(--series-6)">
+    <h2><span class="finding-badge">6</span>Most people sitting in jail haven't been convicted of anything</h2>
     <p>The share of the jail population held pretrial, meaning charged but not yet
       convicted, rose from 54.7% in 2000 to 63.3% in 2019. By the most recent complete
       year, nearly two out of every three people in jail on a given day were legally
@@ -102,31 +122,31 @@
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="pretrial-share"></canvas></div></div>
   </section>
 
-  <section class="finding" id="gender-share">
-    <h2>Women are a small but fast-growing share of the jail population</h2>
+  <section class="finding" id="gender-share" style="--accent:var(--series-7)">
+    <h2><span class="finding-badge">7</span>Women are a small but fast-growing share of the jail population</h2>
     <p>Women made up 11.8% of the jail population in 2000, rising to 14.5% by 2019. Men
       remain the large majority of people in jail, but the female share has grown in
       nearly every year of the last two decades.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="gender-share"></canvas></div></div>
   </section>
 
-  <section class="finding" id="overcrowding">
-    <h2>Nearly a quarter of counties are jailing more people than their jails are built for</h2>
+  <section class="finding" id="overcrowding" style="--accent:var(--series-8)">
+    <h2><span class="finding-badge">8</span>Nearly a quarter of counties are jailing more people than their jails are built for</h2>
     <p>Comparing 2019 jail populations to each jail's rated capacity, 23.0% of the 2,796
       counties reporting a rated capacity exceeded it, and the national average
       utilization was 88.4% of rated capacity.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="overcrowding"></canvas></div></div>
   </section>
 
-  <section class="finding" id="outlier-counties">
-    <h2>A handful of counties post incarceration rates far above the national average</h2>
+  <section class="finding" id="outlier-counties" style="--accent:var(--series-1)">
+    <h2><span class="finding-badge">9</span>A handful of counties post incarceration rates far above the national average</h2>
     <p>The national incarceration rate (jail plus prison) was about 797 per 100,000 adults
       in 2019. Among counties with at least 50,000 working-age adults, the highest rate was
       in Bowie County, TX at 3,787 per 100,000 &mdash; nearly 5 times the national rate.</p>
     <div class="chart-card"><div class="chart-canvas-box tall"><canvas data-chart="outlier-counties"></canvas></div></div>
   </section>
 
-  <section class="methodology">
+  <section class="methodology finding" id="about-data" style="--accent:var(--series-3)">
     <h2>About this data</h2>
     <p>The data comes from the <a href="https://github.com/vera-institute/incarceration-trends" target="_blank" rel="noopener">Vera Institute of Justice's Incarceration Trends dataset</a>,
       compiled from the U.S. Department of Justice's Bureau of Justice Statistics along with
@@ -163,6 +183,7 @@
   </div>
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/report.js"></script>
 </body>
 </html>

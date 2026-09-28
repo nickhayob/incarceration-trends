@@ -37,6 +37,8 @@
     },
   };
 
+  const CHART_ACCENT_SLOT = { 'chart-trend': 0, 'chart-category': 2, 'chart-rank': 3 };
+
   function isRowBreakdown(key) { return Object.prototype.hasOwnProperty.call(ROW_BREAKDOWNS, key); }
   function isColsetBreakdown(key) { return Object.prototype.hasOwnProperty.call(COLSET_BREAKDOWNS, key); }
   function breakdownLabel(key) {
@@ -133,6 +135,7 @@
     return {
       responsive: true,
       maintainAspectRatio: false,
+      animation: { duration: 500, easing: 'easeOutQuart' },
       plugins: {
         legend: {
           display: showLegend,
@@ -194,13 +197,14 @@
       };
     }
     const c = colors();
+    const accent = c.series[CHART_ACCENT_SLOT[canvasId] ?? 0];
     charts[canvasId] = new Chart(canvas, {
       type: 'bar',
       data: {
         labels,
         datasets: datasets.map((ds) => ({
           ...ds,
-          backgroundColor: ds.backgroundColor || c.series[0],
+          backgroundColor: ds.backgroundColor || accent,
           borderRadius: 4,
           maxBarThickness: 24,
         })),
@@ -363,7 +367,63 @@
     </tr>`).join('');
   }
 
+  function renderChips() {
+    const container = document.getElementById('filter-chips');
+    if (!container) return;
+    const chips = [];
+    if (filters.yearFrom !== 2000 || filters.yearTo !== 2019) {
+      chips.push({
+        label: `${filters.yearFrom}–${filters.yearTo}`,
+        clear: () => {
+          filters.yearFrom = 2000; filters.yearTo = 2019;
+          document.getElementById('filter-year-from').value = '2000';
+          document.getElementById('filter-year-to').value = '2019';
+        },
+      });
+    }
+    if (filters.state) {
+      chips.push({
+        label: `State: ${filters.state}`,
+        clear: () => {
+          filters.state = ''; filters.county = '';
+          document.getElementById('filter-state').value = '';
+          populateCountyOptions();
+          document.getElementById('filter-county').value = '';
+        },
+      });
+    }
+    if (filters.county) {
+      const opt = [...document.getElementById('filter-county').options].find((o) => Number(o.value) === filters.county);
+      chips.push({
+        label: `County: ${opt ? opt.textContent : filters.county}`,
+        clear: () => { filters.county = ''; document.getElementById('filter-county').value = ''; },
+      });
+    }
+    if (filters.region) {
+      chips.push({ label: `Region: ${filters.region}`, clear: () => { filters.region = ''; document.getElementById('filter-region').value = ''; } });
+    }
+    if (filters.urbanicity) {
+      chips.push({ label: `Urbanicity: ${filters.urbanicity}`, clear: () => { filters.urbanicity = ''; document.getElementById('filter-urbanicity').value = ''; } });
+    }
+    container.innerHTML = '';
+    chips.forEach((chip) => {
+      const el = document.createElement('span');
+      el.className = 'filter-chip';
+      const text = document.createElement('span');
+      text.textContent = chip.label;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', `Remove filter: ${chip.label}`);
+      btn.textContent = '×';
+      btn.addEventListener('click', () => { chip.clear(); renderAll(); });
+      el.appendChild(text);
+      el.appendChild(btn);
+      container.appendChild(el);
+    });
+  }
+
   function renderAll() {
+    renderChips();
     renderSummary();
     renderTrend();
     renderCategory();

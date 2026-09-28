@@ -6,6 +6,7 @@
 <title>Dashboard &mdash; Incarceration Trends</title>
 <meta name="description" content="Interactive dashboard for exploring U.S. county jail and prison data, 2000-2019.">
 <link rel="stylesheet" href="css/style.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.6.1/papaparse.min.js"></script>
 </head>
@@ -13,9 +14,14 @@
 <nav class="site-nav">
   <div class="container">
     <a class="brand" href="index.html">Incarceration Trends</a>
-    <div class="links">
-      <a href="index.html">Report</a>
-      <a href="dashboard.html" aria-current="page">Dashboard</a>
+    <div class="right">
+      <div class="links">
+        <a href="index.html">Report</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="icon-light">&#9728;&#65039;</span><span class="icon-dark">&#127769;</span>
+      </button>
     </div>
   </div>
 </nav>
@@ -27,6 +33,8 @@
       charts update live. All calculations run in your browser from the same cleaned data
       file used in the report.</p>
   </header>
+
+  <div class="filter-chips" id="filter-chips" aria-label="Active filters"></div>
 
   <section class="filter-bar" aria-label="Filters">
     <div class="filter-field year-range">
@@ -55,14 +63,14 @@
   </section>
 
   <section class="stat-grid" id="summary-stats" aria-label="Summary numbers">
-    <div class="stat-tile"><div class="value" id="stat-rows">&mdash;</div><div class="label">County-year rows in view</div></div>
-    <div class="stat-tile"><div class="value" id="stat-total-jail">&mdash;</div><div class="label">Total jail population (sum over view)</div></div>
-    <div class="stat-tile"><div class="value" id="stat-rate">&mdash;</div><div class="label">Jail rate per 100,000 adults</div></div>
-    <div class="stat-tile"><div class="value" id="stat-pretrial">&mdash;</div><div class="label">Pretrial share of jail population</div></div>
+    <div class="stat-tile" style="--accent:var(--series-1)"><div class="value" id="stat-rows">&mdash;</div><div class="label">County-year rows in view</div></div>
+    <div class="stat-tile" style="--accent:var(--series-2)"><div class="value" id="stat-total-jail">&mdash;</div><div class="label">Total jail population (sum over view)</div></div>
+    <div class="stat-tile" style="--accent:var(--series-3)"><div class="value" id="stat-rate">&mdash;</div><div class="label">Jail rate per 100,000 adults</div></div>
+    <div class="stat-tile" style="--accent:var(--series-5)"><div class="value" id="stat-pretrial">&mdash;</div><div class="label">Pretrial share of jail population</div></div>
   </section>
 
   <section class="chart-grid" aria-label="Charts">
-    <div class="chart-card">
+    <div class="chart-card" style="--accent:var(--series-1)">
       <h3>Trend over time</h3>
       <div class="chart-controls">
         <select id="trend-measure" aria-label="Measure"></select>
@@ -71,7 +79,7 @@
       <div class="chart-canvas-box"><canvas id="chart-trend"></canvas></div>
     </div>
 
-    <div class="chart-card">
+    <div class="chart-card" style="--accent:var(--series-3)">
       <h3>By category</h3>
       <div class="chart-controls">
         <select id="category-measure" aria-label="Measure"></select>
@@ -80,7 +88,7 @@
       <div class="chart-canvas-box"><canvas id="chart-category"></canvas></div>
     </div>
 
-    <div class="chart-card">
+    <div class="chart-card" style="--accent:var(--series-4)">
       <h3>Top 10 ranked</h3>
       <div class="chart-controls">
         <select id="rank-measure" aria-label="Measure"></select>
@@ -89,7 +97,7 @@
       <div class="chart-canvas-box tall"><canvas id="chart-rank"></canvas></div>
     </div>
 
-    <div class="chart-card">
+    <div class="chart-card" style="--accent:var(--series-7)">
       <h3>Composition</h3>
       <div class="chart-controls">
         <select id="composition-measure" aria-label="Measure"></select>
@@ -117,6 +125,7 @@
   </div>
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/dashboard.js"></script>
 </body>
 </html>
