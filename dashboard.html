@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard &mdash; Incarceration Trends</title>
+<meta name="description" content="Interactive dashboard for exploring U.S. county jail and prison data, 2000-2019.">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.6.1/papaparse.min.js"></script>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container">
+    <a class="brand" href="index.html">Incarceration Trends</a>
+    <div class="links">
+      <a href="index.html">Report</a>
+      <a href="dashboard.html" aria-current="page">Dashboard</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <header class="dash-header">
+    <h1>Explore the data</h1>
+    <p>Filter U.S. county jail and prison data from 2000&ndash;2019 and see the numbers and
+      charts update live. All calculations run in your browser from the same cleaned data
+      file used in the report.</p>
+  </header>
+
+  <section class="filter-bar" aria-label="Filters">
+    <div class="filter-field year-range">
+      <label>Year range</label>
+      <select id="filter-year-from"></select>
+      <span>&ndash;</span>
+      <select id="filter-year-to"></select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-state">State</label>
+      <select id="filter-state"><option value="">All states</option></select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-county">County</label>
+      <select id="filter-county"><option value="">All counties</option></select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-region">Region</label>
+      <select id="filter-region"><option value="">All regions</option></select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-urbanicity">Urbanicity</label>
+      <select id="filter-urbanicity"><option value="">All</option></select>
+    </div>
+    <button id="reset-filters" type="button">Reset filters</button>
+  </section>
+
+  <section class="stat-grid" id="summary-stats" aria-label="Summary numbers">
+    <div class="stat-tile"><div class="value" id="stat-rows">&mdash;</div><div class="label">County-year rows in view</div></div>
+    <div class="stat-tile"><div class="value" id="stat-total-jail">&mdash;</div><div class="label">Total jail population (sum over view)</div></div>
+    <div class="stat-tile"><div class="value" id="stat-rate">&mdash;</div><div class="label">Jail rate per 100,000 adults</div></div>
+    <div class="stat-tile"><div class="value" id="stat-pretrial">&mdash;</div><div class="label">Pretrial share of jail population</div></div>
+  </section>
+
+  <section class="chart-grid" aria-label="Charts">
+    <div class="chart-card">
+      <h3>Trend over time</h3>
+      <div class="chart-controls">
+        <select id="trend-measure" aria-label="Measure"></select>
+        <select id="trend-breakdown" aria-label="Break down by"></select>
+      </div>
+      <div class="chart-canvas-box"><canvas id="chart-trend"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>By category</h3>
+      <div class="chart-controls">
+        <select id="category-measure" aria-label="Measure"></select>
+        <select id="category-breakdown" aria-label="Break down by"></select>
+      </div>
+      <div class="chart-canvas-box"><canvas id="chart-category"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Top 10 ranked</h3>
+      <div class="chart-controls">
+        <select id="rank-measure" aria-label="Measure"></select>
+        <select id="rank-unit" aria-label="Rank by"></select>
+      </div>
+      <div class="chart-canvas-box tall"><canvas id="chart-rank"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Composition</h3>
+      <div class="chart-controls">
+        <select id="composition-measure" aria-label="Measure"></select>
+        <select id="composition-breakdown" aria-label="Break down by"></select>
+      </div>
+      <div class="chart-canvas-box"><canvas id="chart-composition"></canvas></div>
+    </div>
+  </section>
+
+  <section class="table-section">
+    <h2>Numbers behind the current view</h2>
+    <p style="color:var(--text-secondary); font-size:0.9rem;">Rows follow the "By category" chart's current breakdown, using the filters above.</p>
+    <div class="table-wrap">
+      <table class="data-table" id="data-table">
+        <thead><tr></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Data: Vera Institute of Justice, Incarceration Trends &middot; Built with Chart.js and Papa Parse
+  </div>
+</footer>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
