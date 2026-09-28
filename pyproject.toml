@@ -1,0 +1,8 @@
+[project]
+name = "incarceration-trends"
+version = "0.1.0"
+description = "Data prep for the Incarceration Trends report + dashboard site"
+requires-python = ">=3.14"
+dependencies = [
+    "pandas>=3.0.6",
+]
