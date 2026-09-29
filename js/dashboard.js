@@ -1,6 +1,11 @@
 (function () {
   let DATA = [];
+  let GEOJSON = null;
+  let map = null;
+  let geoLayer = null;
   const charts = {};
+  const MAP_COLORS = ['#cde2fb', '#9ec5f4', '#5598e7', '#2a78d6', '#1c5cab', '#0d366b'];
+  const MAP_NO_DATA_COLOR = '#8a8a86';
 
   const filters = { yearFrom: 2000, yearTo: 2019, state: '', county: '', region: '', urbanicity: '' };
 
@@ -367,6 +372,107 @@
     </tr>`).join('');
   }
 
+  // ---------- Map ----------
+  function buildMap() {
+    const box = document.getElementById('map-box');
+    if (!box || !window.L || !GEOJSON) return;
+    map = L.map(box, {
+      attributionControl: false,
+      scrollWheelZoom: false,
+      minZoom: 3,
+      maxZoom: 7,
+    });
+    geoLayer = L.geoJSON(GEOJSON, {
+      style: () => ({ color: cssVar('--baseline'), weight: 0.6, fillColor: MAP_NO_DATA_COLOR, fillOpacity: 0.5 }),
+      onEachFeature: (feature, layer) => {
+        layer.on({
+          mouseover: (e) => { e.target.setStyle({ weight: 2, color: cssVar('--text-primary') }); e.target.bringToFront(); },
+          mouseout: (e) => { e.target.setStyle({ weight: 0.6, color: cssVar('--baseline') }); },
+        });
+      },
+    }).addTo(map);
+    // Fit to the continental US explicitly: Alaska's geometry crosses the
+    // antimeridian, which blows out an auto-computed bounds to the whole globe.
+    map.fitBounds([[24.0, -125.0], [49.5, -66.5]]);
+    updateMap();
+  }
+
+  function renderMapLegend(breaks, hasData) {
+    const el = document.getElementById('map-legend');
+    if (!el) return;
+    const fmt = (n) => Math.round(n).toLocaleString();
+    if (!hasData) {
+      el.innerHTML = `<span class="swatch"><i style="background:${MAP_NO_DATA_COLOR}"></i>No data for this year/filters</span>`;
+      return;
+    }
+    let html = '';
+    MAP_COLORS.forEach((color, i) => {
+      const lo = i === 0 ? 0 : Math.round(breaks[i - 1]);
+      const hi = i < breaks.length ? Math.round(breaks[i]) : null;
+      const label = hi === null ? `${fmt(lo)}+` : `${fmt(lo)}–${fmt(hi)}`;
+      html += `<span class="swatch"><i style="background:${color}"></i>${label}</span>`;
+    });
+    html += `<span class="swatch"><i style="background:${MAP_NO_DATA_COLOR}"></i>No data</span>`;
+    el.innerHTML = html;
+  }
+
+  function updateMap() {
+    if (!geoLayer) return;
+    const yearSel = document.getElementById('map-year');
+    const measureSel = document.getElementById('map-measure');
+    if (!yearSel || !measureSel) return;
+    const year = Number(yearSel.value);
+    const measure = measureSel.value;
+
+    const rows = DATA.filter((r) => r.year === year &&
+      (!filters.state || r.state_abbr === filters.state) &&
+      (!filters.county || r.county_fips === filters.county) &&
+      (!filters.region || r.region === filters.region) &&
+      (!filters.urbanicity || r.urbanicity === filters.urbanicity));
+
+    const valueByFips = new Map();
+    const labelByFips = new Map();
+    for (const r of rows) {
+      const jail = r.total_jail_pop;
+      if (jail === null || jail === undefined) continue;
+      let value = jail;
+      if (measure === 'rate') {
+        if (!r.total_pop_15to64) continue;
+        value = (jail / r.total_pop_15to64) * 100000;
+      }
+      const fips = String(r.county_fips).padStart(5, '0');
+      valueByFips.set(fips, value);
+      labelByFips.set(fips, `${r.county_name}, ${r.state_abbr}`);
+    }
+
+    const sortedValues = [...valueByFips.values()].sort((a, b) => a - b);
+    const buckets = MAP_COLORS.length;
+    const breaks = [];
+    for (let i = 1; i < buckets; i++) {
+      breaks.push(sortedValues[Math.min(Math.floor((sortedValues.length * i) / buckets), sortedValues.length - 1)] ?? 0);
+    }
+    function colorFor(v) {
+      for (let i = 0; i < breaks.length; i++) if (v <= breaks[i]) return MAP_COLORS[i];
+      return MAP_COLORS[MAP_COLORS.length - 1];
+    }
+
+    const noDataColor = '#8a8a86';
+    const borderColor = cssVar('--baseline');
+    const measureLabel = measure === 'rate' ? 'per 100,000 adults' : 'total jail population';
+    geoLayer.eachLayer((layer) => {
+      const fips = String(layer.feature.id).padStart(5, '0');
+      const value = valueByFips.get(fips);
+      const fill = value === undefined ? noDataColor : colorFor(value);
+      layer.setStyle({ fillColor: fill, color: borderColor, weight: 0.6, fillOpacity: value === undefined ? 0.5 : 0.9 });
+      const name = labelByFips.get(fips) || (layer.feature.properties && layer.feature.properties.NAME) || fips;
+      const text = value === undefined ? `${name}<br>No data` : `${name}<br>${Math.round(value).toLocaleString()} ${measureLabel}`;
+      layer.unbindTooltip();
+      layer.bindTooltip(text, { sticky: true });
+    });
+
+    renderMapLegend(breaks, sortedValues.length > 0);
+  }
+
   function renderChips() {
     const container = document.getElementById('filter-chips');
     if (!container) return;
@@ -430,6 +536,7 @@
     renderRank();
     renderComposition();
     renderTable();
+    updateMap();
   }
 
   // ---------- Filters UI ----------
@@ -488,6 +595,8 @@
     document.getElementById('rank-unit').value = 'county';
     document.getElementById('composition-measure').value = 'share';
     document.getElementById('composition-breakdown').value = 'race';
+    document.getElementById('map-year').value = '2019';
+    document.getElementById('map-measure').value = 'rate';
 
     renderAll();
   }
@@ -527,6 +636,21 @@
     ['category-measure', 'category-breakdown'].forEach((id) => document.getElementById(id).addEventListener('change', () => { renderCategory(); renderTable(); }));
     ['rank-measure', 'rank-unit'].forEach((id) => document.getElementById(id).addEventListener('change', renderRank));
     ['composition-measure', 'composition-breakdown'].forEach((id) => document.getElementById(id).addEventListener('change', renderComposition));
+    ['map-year', 'map-measure'].forEach((id) => document.getElementById(id).addEventListener('change', updateMap));
+
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) themeBtn.addEventListener('click', () => setTimeout(updateMap, 0));
+  }
+
+  function populateMapSelects() {
+    const years = [];
+    for (let y = 2019; y >= 2000; y--) years.push({ value: y, label: String(y) });
+    fillSelect('map-year', years);
+    document.getElementById('map-year').value = '2019';
+    fillSelect('map-measure', [
+      { value: 'rate', label: 'Jail rate per 100,000' },
+      { value: 'total', label: 'Total jail population' },
+    ]);
   }
 
   function init() {
@@ -565,21 +689,35 @@
       { value: 'custody', label: 'Custody status (pretrial vs. other)' },
     ]);
 
+    populateMapSelects();
     wireEvents();
+    buildMap();
     renderAll();
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    Papa.parse('data/incarceration_trends.csv', {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-      complete: (results) => {
-        DATA = results.data;
-        init();
-      },
-      error: (err) => console.error('Failed to load dashboard data', err),
+  function loadCSV() {
+    return new Promise((resolve, reject) => {
+      Papa.parse('data/incarceration_trends.csv', {
+        download: true,
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: (results) => { DATA = results.data; resolve(); },
+        error: reject,
+      });
     });
+  }
+
+  function loadGeoJSON() {
+    return fetch('data/us-counties.geojson')
+      .then((r) => r.json())
+      .then((gj) => { GEOJSON = gj; })
+      .catch((err) => { console.error('Failed to load county boundaries', err); });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    Promise.all([loadCSV(), loadGeoJSON()])
+      .then(init)
+      .catch((err) => console.error('Failed to load dashboard data', err));
   });
 })();

@@ -391,6 +391,50 @@ a { color: var(--series-1); }
 }
 .chart-empty { color: var(--text-muted); font-size: 0.9rem; padding: 30px 0; text-align: center; }
 
+/* ---------- Map ---------- */
+.map-card { margin-bottom: 18px; }
+.map-box {
+  height: 460px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+}
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+.map-legend .swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 4px;
+  border-radius: 999px;
+}
+.map-legend .swatch i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.map-caption { color: var(--text-muted); font-size: 0.78rem; margin: 10px 0 0; }
+
+.leaflet-tooltip {
+  background: var(--surface-1) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18) !important;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  font-size: 0.82rem !important;
+}
+.leaflet-tooltip-top:before { border-top-color: var(--surface-1) !important; }
+.leaflet-container { background: var(--page-plane) !important; }
+
 .table-section { margin: 10px 0 60px; }
 .table-section h2 { font-size: 1.15rem; }
 .table-wrap {
