@@ -218,6 +218,7 @@ def main() -> None:
                     "datasets": [{"label": "Pretrial share of jail population (%)", "data": list(pretrial_share_by_year.values())}],
                 },
                 "pictogramPercent": pretrial_share_by_year[2019],
+                "pictogramIcon": "person",
             },
             {
                 "id": "gender-share",
@@ -247,6 +248,8 @@ def main() -> None:
                     "labels": list(buckets.keys()),
                     "datasets": [{"label": "Number of counties", "data": [int(v) for v in buckets.values()]}],
                 },
+                "pictogramPercent": pct_over_capacity,
+                "pictogramIcon": "building",
             },
             {
                 "id": "outlier-counties",

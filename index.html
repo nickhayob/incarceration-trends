@@ -93,7 +93,7 @@
       <div class="value" data-count-to="3.11" data-suffix="&times;" data-decimals="2">0</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div>
     </div>
     <div class="stat-tile" style="--accent:var(--series-3);--accent-2:var(--series-4)">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l6 6M10 8l6 6M2 22l8-8M6 12l6 6M4 22h7"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
       <div class="value" data-count-to="63.3" data-suffix="%" data-decimals="1">0</div><div class="label">Share of jail population awaiting trial, 2019</div>
     </div>
     <div class="stat-tile" style="--accent:var(--series-4);--accent-2:var(--series-5)">
@@ -158,15 +158,15 @@
   </section>
 
   <section class="finding" id="pretrial-share" style="--accent:var(--series-6);--accent-2:var(--series-7)">
-    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l6 6M10 8l6 6M2 22l8-8M6 12l6 6M4 22h7"/></svg></span>Most people sitting in jail haven't been convicted of anything</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></span>Most people sitting in jail haven't been convicted of anything</h2>
     <p>The share of the jail population held pretrial, meaning charged but not yet
       convicted, rose from 54.7% in 2000 to 63.3% in 2019. By the most recent complete
       year, nearly two out of every three people in jail on a given day were legally
       presumed innocent.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="pretrial-share"></canvas></div></div>
     <div class="pictogram-card">
-      <div class="pictogram" id="pretrial-pictogram" aria-hidden="true"></div>
-      <p class="pictogram-caption" id="pretrial-pictogram-caption">Each icon is 1 out of every 100 people in jail in 2019.</p>
+      <div class="pictogram" id="pretrial-share-pictogram" aria-hidden="true"></div>
+      <p class="pictogram-caption" id="pretrial-share-pictogram-caption">Each icon is 1 out of every 100 people in jail in 2019.</p>
     </div>
   </section>
 
@@ -184,10 +184,14 @@
       counties reporting a rated capacity exceeded it, and the national average
       utilization was 88.4% of rated capacity.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="overcrowding"></canvas></div></div>
+    <div class="pictogram-card">
+      <div class="pictogram" id="overcrowding-pictogram" aria-hidden="true"></div>
+      <p class="pictogram-caption" id="overcrowding-pictogram-caption">Each icon is 1 out of every 100 counties reporting a rated capacity in 2019.</p>
+    </div>
   </section>
 
   <section class="finding" id="outlier-counties" style="--accent:var(--series-1);--accent-2:var(--series-2)">
-    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V3M5 4h13l-3 4 3 4H5"/></svg></span>A handful of counties post incarceration rates far above the national average</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6l2.7 6.2 6.7.6-5.1 4.4 1.6 6.5L12 16.9l-5.9 3.4 1.6-6.5-5.1-4.4 6.7-.6z"/></svg></span>A handful of counties post incarceration rates far above the national average</h2>
     <p>The national incarceration rate (jail plus prison) was about 797 per 100,000 adults
       in 2019. Among counties with at least 50,000 working-age adults, the highest rate was
       in Bowie County, TX at 3,787 per 100,000 &mdash; nearly 5 times the national rate.</p>

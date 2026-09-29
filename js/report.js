@@ -209,21 +209,38 @@
     map.forEach((_link, target) => io.observe(target));
   }
 
-  function renderPictogram(percent) {
-    const grid = document.getElementById('pretrial-pictogram');
-    const caption = document.getElementById('pretrial-pictogram-caption');
-    if (!grid) return;
-    const filled = Math.round(percent);
-    const personSvg = (isFilled) =>
-      `<svg class="person${isFilled ? ' filled' : ''}" viewBox="0 0 10 14" width="9" height="13" fill="currentColor">
+  const PICTOGRAM_GLYPHS = {
+    person: (filled) =>
+      `<svg class="person${filled ? ' filled' : ''}" viewBox="0 0 10 14" width="9" height="13" fill="currentColor">
         <circle cx="5" cy="3" r="3"/>
         <path d="M0 14c0-4.4 2-6.6 5-6.6s5 2.2 5 6.6z"/>
-      </svg>`;
+      </svg>`,
+    building: (filled) =>
+      `<svg class="person${filled ? ' filled' : ''}" viewBox="0 0 10 14" width="9" height="13" fill="currentColor">
+        <rect x="0" y="1" width="10" height="13" rx="1.5"/>
+        <rect x="2" y="4.5" width="1.3" height="9.5" fill="var(--surface-1)"/>
+        <rect x="4.35" y="4.5" width="1.3" height="9.5" fill="var(--surface-1)"/>
+        <rect x="6.7" y="4.5" width="1.3" height="9.5" fill="var(--surface-1)"/>
+      </svg>`,
+  };
+
+  const PICTOGRAM_CAPTIONS = {
+    'pretrial-share': (n) => `<strong>${n} out of every 100</strong> people in jail on a given day in 2019 were awaiting trial, not yet convicted.`,
+    'overcrowding': (n) => `<strong>${n} out of every 100</strong> counties reporting a rated jail capacity in 2019 were over it.`,
+  };
+
+  function renderPictogram(section) {
+    const grid = document.getElementById(`${section.id}-pictogram`);
+    const caption = document.getElementById(`${section.id}-pictogram-caption`);
+    if (!grid) return;
+    const filled = Math.round(section.pictogramPercent);
+    const glyph = PICTOGRAM_GLYPHS[section.pictogramIcon] || PICTOGRAM_GLYPHS.person;
     let html = '';
-    for (let i = 0; i < 100; i++) html += personSvg(i < filled);
+    for (let i = 0; i < 100; i++) html += glyph(i < filled);
     grid.innerHTML = html;
     if (caption) {
-      caption.innerHTML = `<strong>${filled} out of every 100</strong> people in jail on a given day in 2019 were awaiting trial, not yet convicted.`;
+      const captionFn = PICTOGRAM_CAPTIONS[section.id];
+      caption.innerHTML = captionFn ? captionFn(filled) : `<strong>${filled} out of every 100</strong>`;
     }
   }
 
@@ -240,7 +257,7 @@
           if (section.chart.type === 'line') renderLine(canvas, section);
           else renderBar(canvas, section);
         }
-        if (section.pictogramPercent !== undefined) renderPictogram(section.pictogramPercent);
+        if (section.pictogramPercent !== undefined) renderPictogram(section);
       });
     })
     .catch((err) => {

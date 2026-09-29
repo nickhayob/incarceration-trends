@@ -309,7 +309,8 @@
           }
         ]
       },
-      "pictogramPercent": 63.3
+      "pictogramPercent": 63.3,
+      "pictogramIcon": "person"
     },
     {
       "id": "gender-share",
@@ -395,7 +396,9 @@
             ]
           }
         ]
-      }
+      },
+      "pictogramPercent": 23.0,
+      "pictogramIcon": "building"
     },
     {
       "id": "outlier-counties",
