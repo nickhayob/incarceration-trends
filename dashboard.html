@@ -15,7 +15,10 @@
 <body>
 <nav class="site-nav">
   <div class="container">
-    <a class="brand" href="index.html">Incarceration Trends</a>
+    <a class="brand" href="index.html">
+      <span class="logo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9 10v9M15 10v9M19 10v9M3 21h18"/></svg></span>
+      Incarceration Trends
+    </a>
     <div class="right">
       <div class="links">
         <a href="index.html">Report</a>
@@ -30,10 +33,28 @@
 
 <main class="container">
   <header class="dash-header">
-    <h1>Explore the data</h1>
-    <p>Filter U.S. county jail and prison data from 2000&ndash;2019 and see the numbers and
-      charts update live. All calculations run in your browser from the same cleaned data
-      file used in the report.</p>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Explore the data</h1>
+        <p>Filter U.S. county jail and prison data from 2000&ndash;2019 and see the numbers and
+          charts update live. All calculations run in your browser from the same cleaned data
+          file used in the report.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="235" cy="18" r="3" style="fill:var(--series-4)" opacity="0.4"/>
+          <circle cx="14" cy="18" r="2.5" style="fill:var(--series-6)" opacity="0.35"/>
+          <rect x="20" y="158" width="105" height="3" rx="1.5" style="fill:var(--baseline)"/>
+          <rect x="28" y="90" width="22" height="68" rx="5" style="fill:var(--series-1)"/>
+          <rect x="58" y="60" width="22" height="98" rx="5" style="fill:var(--series-3)"/>
+          <rect x="88" y="100" width="22" height="58" rx="5" style="fill:var(--series-5)"/>
+          <path d="M190 38a30 30 0 0 1 30 30c0 21-30 56-30 56s-30-35-30-56a30 30 0 0 1 30-30z" style="fill:var(--series-2)"/>
+          <circle cx="190" cy="68" r="11" style="fill:var(--surface-1)"/>
+          <circle cx="100" cy="42" r="22" fill="none" style="stroke:var(--series-7)" stroke-width="6"/>
+          <line x1="117" y1="59" x2="140" y2="82" style="stroke:var(--series-7)" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
   </header>
 
   <div class="filter-chips" id="filter-chips" aria-label="Active filters"></div>
@@ -65,19 +86,19 @@
   </section>
 
   <section class="stat-grid" id="summary-stats" aria-label="Summary numbers">
-    <div class="stat-tile" style="--accent:var(--series-1)">
+    <div class="stat-tile" style="--accent:var(--series-1);--accent-2:var(--series-2)">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
       <div class="value" id="stat-rows">&mdash;</div><div class="label">County-year rows in view</div>
     </div>
-    <div class="stat-tile" style="--accent:var(--series-2)">
+    <div class="stat-tile" style="--accent:var(--series-2);--accent-2:var(--series-3)">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9 10v9M15 10v9M19 10v9M3 21h18"/></svg>
       <div class="value" id="stat-total-jail">&mdash;</div><div class="label">Total jail population (sum over view)</div>
     </div>
-    <div class="stat-tile" style="--accent:var(--series-3)">
+    <div class="stat-tile" style="--accent:var(--series-3);--accent-2:var(--series-4)">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
       <div class="value" id="stat-rate">&mdash;</div><div class="label">Jail rate per 100,000 adults</div>
     </div>
-    <div class="stat-tile" style="--accent:var(--series-5)">
+    <div class="stat-tile" style="--accent:var(--series-5);--accent-2:var(--series-6)">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l6 6M10 8l6 6M2 22l8-8M6 12l6 6M4 22h7"/></svg>
       <div class="value" id="stat-pretrial">&mdash;</div><div class="label">Pretrial share of jail population</div>
     </div>

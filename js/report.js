@@ -66,6 +66,15 @@
     };
   }
 
+  function areaGradient(canvas, hex) {
+    const ctx = canvas.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, canvas.clientHeight || 260);
+    const r = parseInt(hex.slice(1, 3), 16), gg = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    g.addColorStop(0, `rgba(${r},${gg},${b},0.32)`);
+    g.addColorStop(1, `rgba(${r},${gg},${b},0.02)`);
+    return g;
+  }
+
   function renderLine(canvas, section) {
     const c = colors();
     const multi = section.chart.datasets.length > 1;
@@ -78,7 +87,8 @@
           label: ds.label,
           data: ds.data,
           borderColor: palette[i % palette.length],
-          backgroundColor: palette[i % palette.length],
+          backgroundColor: multi ? palette[i % palette.length] : areaGradient(canvas, palette[0]),
+          fill: !multi,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 5,

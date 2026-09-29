@@ -168,15 +168,27 @@
     if (charts[id]) { charts[id].destroy(); delete charts[id]; }
   }
 
+  function areaGradient(canvas, hex) {
+    const ctx = canvas.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, canvas.clientHeight || 240);
+    const r = parseInt(hex.slice(1, 3), 16), gg = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    g.addColorStop(0, `rgba(${r},${gg},${b},0.30)`);
+    g.addColorStop(1, `rgba(${r},${gg},${b},0.02)`);
+    return g;
+  }
+
   function renderLineChart(canvasId, labels, datasets) {
     destroyChart(canvasId);
     const canvas = document.getElementById(canvasId);
+    const single = datasets.length === 1;
     charts[canvasId] = new Chart(canvas, {
       type: 'line',
       data: {
         labels,
         datasets: datasets.map((ds) => ({
           ...ds,
+          backgroundColor: single ? areaGradient(canvas, ds.borderColor) : ds.backgroundColor,
+          fill: single,
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 5,

@@ -120,11 +120,26 @@ a { color: var(--series-1); }
   max-width: 1100px;
 }
 .site-nav .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text-primary);
   text-decoration: none;
 }
+.site-nav .brand .logo-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--series-1), var(--series-7));
+  color: #fff;
+  flex: 0 0 auto;
+}
+.site-nav .brand .logo-badge svg { width: 15px; height: 15px; }
 .site-nav .links a {
   margin-left: 20px;
   color: var(--text-secondary);
@@ -157,32 +172,43 @@ a { color: var(--series-1); }
   flex: 0 0 auto;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--active-color, var(--text-muted));
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  transition: color .15s ease, border-color .15s ease, background .15s ease;
+  border: 1px solid color-mix(in srgb, var(--active-color, var(--baseline)) 35%, transparent);
+  background: color-mix(in srgb, var(--active-color, transparent) 10%, transparent);
+  transition: color .15s ease, border-color .15s ease, background .15s ease, transform .15s ease;
 }
-.section-nav a:hover { color: var(--text-primary); border-color: var(--baseline); }
-.section-nav a.active { color: var(--text-primary); background: var(--surface-1); border-color: var(--active-color, var(--series-1)); }
+.section-nav a:hover { transform: translateY(-1px); border-color: var(--active-color, var(--baseline)); background: color-mix(in srgb, var(--active-color, transparent) 18%, transparent); }
+.section-nav a.active { color: #fff; background: var(--active-color, var(--series-1)); border-color: var(--active-color, var(--series-1)); }
 
 /* ---------- Report header ---------- */
-.report-header {
+.report-header, .dash-header {
   padding: 48px 0 28px;
   margin-bottom: 8px;
   background:
-    radial-gradient(680px 320px at 12% -10%, color-mix(in srgb, var(--series-1) 20%, transparent), transparent),
-    radial-gradient(560px 280px at 100% 0%, color-mix(in srgb, var(--series-7) 16%, transparent), transparent);
+    radial-gradient(680px 320px at 12% -10%, color-mix(in srgb, var(--series-1) 24%, transparent), transparent),
+    radial-gradient(560px 300px at 90% 10%, color-mix(in srgb, var(--series-3) 20%, transparent), transparent),
+    radial-gradient(420px 240px at 60% 100%, color-mix(in srgb, var(--series-5) 14%, transparent), transparent);
 }
 .hero-inner { display: flex; align-items: center; gap: 28px; justify-content: space-between; }
 .hero-text { flex: 1 1 420px; min-width: 0; }
-.hero-art { flex: 0 0 200px; width: 200px; color: var(--series-1); opacity: 0.92; }
+.hero-art { flex: 0 0 240px; width: 240px; }
 .hero-art svg { width: 100%; height: auto; }
 @media (max-width: 760px) {
   .hero-art { display: none; }
 }
-.report-header h1 { font-size: 2.1rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+.report-header h1, .dash-header h1 {
+  font-size: 2.15rem;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  background: linear-gradient(100deg, var(--series-1) 0%, var(--series-7) 55%, var(--series-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
 .report-header .byline { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 18px; }
 .report-header .summary { font-size: 1.05rem; color: var(--text-secondary); max-width: 70ch; }
 
@@ -195,7 +221,9 @@ a { color: var(--series-1); }
 }
 .stat-tile {
   position: relative;
-  background: var(--surface-1);
+  background:
+    radial-gradient(120px 90px at 100% 0%, color-mix(in srgb, var(--accent, var(--series-1)) 14%, transparent), transparent),
+    var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 18px 18px 16px;
@@ -207,18 +235,22 @@ a { color: var(--series-1); }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--accent, var(--series-1));
+  background: linear-gradient(90deg, var(--accent, var(--series-1)), var(--accent-2, var(--accent, var(--series-1))));
 }
 .stat-tile:hover {
   transform: translateY(-3px);
   border-color: var(--accent, var(--series-1));
-  box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent, var(--series-1)) 22%, transparent);
 }
 .stat-tile .icon {
-  width: 22px;
-  height: 22px;
-  color: var(--accent, var(--series-1));
-  margin-bottom: 8px;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent, var(--series-1)), var(--accent-2, var(--accent, var(--series-1))));
+  margin-bottom: 10px;
   display: block;
 }
 .stat-tile .value {
@@ -246,16 +278,19 @@ a { color: var(--series-1); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--accent, var(--series-1));
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--accent, var(--series-1)), var(--accent-2, var(--accent, var(--series-1))));
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent, var(--series-1)) 45%, transparent);
   color: #fff;
   font-weight: 700;
   font-size: 0.85rem;
-  margin-right: 10px;
+  margin-right: 12px;
   vertical-align: middle;
+  transition: transform .2s ease;
 }
+.finding:hover .finding-badge { transform: scale(1.08) rotate(-4deg); }
 .finding h2 { font-size: 1.35rem; margin: 0 0 14px; display: flex; align-items: center; }
 .finding p { color: var(--text-secondary); max-width: 72ch; }
 .finding .chart-card { margin-top: 18px; }
@@ -324,13 +359,7 @@ a { color: var(--series-1); }
 .methodology dd { margin: 0; }
 
 /* ---------- Dashboard ---------- */
-.dash-header {
-  padding: 40px 0 20px;
-  background:
-    radial-gradient(680px 300px at 88% -10%, color-mix(in srgb, var(--series-3) 18%, transparent), transparent),
-    radial-gradient(520px 260px at 0% 0%, color-mix(in srgb, var(--series-1) 16%, transparent), transparent);
-}
-.dash-header h1 { font-size: 1.9rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+.dash-header h1 { font-size: 1.95rem; }
 .dash-header p { color: var(--text-secondary); max-width: 70ch; }
 
 .filter-chips {
