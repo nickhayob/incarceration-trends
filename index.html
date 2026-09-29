@@ -41,29 +41,64 @@
 
 <main class="container">
   <header class="report-header">
-    <h1>Incarceration Trends: What County Jail Data Reveals, 2000&ndash;2019</h1>
-    <p class="byline">[Your Name] &middot; [Student ID]</p>
-    <p class="summary">
-      This report covers jail and prison populations for nearly 3,000 U.S. counties from
-      2000 through 2019, drawn from the Vera Institute of Justice's Incarceration Trends
-      dataset. Over those two decades, local jails grew even as state prisons leveled off,
-      a stark and only slowly narrowing racial gap persisted in who gets jailed, rural
-      counties and the South jailed people at far higher rates than cities and the
-      Northeast, and a growing majority of the people held in jail on any given day had
-      not been convicted of a crime.
-    </p>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Incarceration Trends: What County Jail Data Reveals, 2000&ndash;2019</h1>
+        <p class="byline">[Your Name] &middot; [Student ID]</p>
+        <p class="summary">
+          This report covers jail and prison populations for nearly 3,000 U.S. counties from
+          2000 through 2019, drawn from the Vera Institute of Justice's Incarceration Trends
+          dataset. Over those two decades, local jails grew even as state prisons leveled off,
+          a stark and only slowly narrowing racial gap persisted in who gets jailed, rural
+          counties and the South jailed people at far higher rates than cities and the
+          Northeast, and a growing majority of the people held in jail on any given day had
+          not been convicted of a crime.
+        </p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="18" r="4" fill="currentColor" opacity="0.22"/>
+          <circle cx="184" cy="40" r="2.5" fill="currentColor" opacity="0.16"/>
+          <circle cx="14" cy="28" r="3" fill="currentColor" opacity="0.18"/>
+          <path d="M110 15 L205 75 H15 Z" fill="currentColor" opacity="0.85"/>
+          <rect x="15" y="75" width="190" height="10" fill="currentColor" opacity="0.8"/>
+          <rect x="28" y="85" width="12" height="60" fill="currentColor" opacity="0.7"/>
+          <rect x="64" y="85" width="12" height="60" fill="currentColor" opacity="0.7"/>
+          <rect x="100" y="85" width="12" height="60" fill="currentColor" opacity="0.7"/>
+          <rect x="136" y="85" width="12" height="60" fill="currentColor" opacity="0.7"/>
+          <rect x="172" y="85" width="12" height="60" fill="currentColor" opacity="0.7"/>
+          <rect x="10" y="145" width="200" height="8" fill="currentColor" opacity="0.85"/>
+          <rect x="2" y="153" width="216" height="8" fill="currentColor" opacity="0.9"/>
+        </svg>
+      </div>
+    </div>
   </header>
 
   <section class="stat-grid" id="headline-stats" aria-label="Headline numbers">
-    <div class="stat-tile" style="--accent:var(--series-1)"><div class="value" data-count-to="732033">0</div><div class="label">Average daily jail population, 2019</div></div>
-    <div class="stat-tile" style="--accent:var(--series-2)"><div class="value" data-count-to="3.11" data-suffix="&times;" data-decimals="2">0</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div></div>
-    <div class="stat-tile" style="--accent:var(--series-3)"><div class="value" data-count-to="63.3" data-suffix="%" data-decimals="1">0</div><div class="label">Share of jail population awaiting trial, 2019</div></div>
-    <div class="stat-tile" style="--accent:var(--series-4)"><div class="value" data-count-to="2986">0</div><div class="label">Counties tracked, 2000&ndash;2019</div></div>
-    <div class="stat-tile" style="--accent:var(--series-5)"><div class="value" data-count-to="23.0" data-suffix="%" data-decimals="1">0</div><div class="label">Counties over rated jail capacity, 2019</div></div>
+    <div class="stat-tile" style="--accent:var(--series-1)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9 10v9M15 10v9M19 10v9M3 21h18"/></svg>
+      <div class="value" data-count-to="732033">0</div><div class="label">Average daily jail population, 2019</div>
+    </div>
+    <div class="stat-tile" style="--accent:var(--series-2)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 21h10M4 7h16M4 7l-3 6a3 3 0 0 0 6 0l-3-6zM20 7l-3 6a3 3 0 0 0 6 0l-3-6z"/></svg>
+      <div class="value" data-count-to="3.11" data-suffix="&times;" data-decimals="2">0</div><div class="label">Black&ndash;white jail incarceration rate ratio, 2019</div>
+    </div>
+    <div class="stat-tile" style="--accent:var(--series-3)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l6 6M10 8l6 6M2 22l8-8M6 12l6 6M4 22h7"/></svg>
+      <div class="value" data-count-to="63.3" data-suffix="%" data-decimals="1">0</div><div class="label">Share of jail population awaiting trial, 2019</div>
+    </div>
+    <div class="stat-tile" style="--accent:var(--series-4)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <div class="value" data-count-to="2986">0</div><div class="label">Counties tracked, 2000&ndash;2019</div>
+    </div>
+    <div class="stat-tile" style="--accent:var(--series-5)">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v18M10 3v18M15 3v18M20 3v18M5 8h15M5 16h15"/></svg>
+      <div class="value" data-count-to="23.0" data-suffix="%" data-decimals="1">0</div><div class="label">Counties over rated jail capacity, 2019</div>
+    </div>
   </section>
 
   <section class="finding" id="jail-vs-prison" style="--accent:var(--series-1)">
-    <h2><span class="finding-badge">1</span>Local jails grew even as state prisons leveled off</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9 10v9M15 10v9M19 10v9M3 21h18"/></svg></span>Local jails grew even as state prisons leveled off</h2>
     <p>Between 2000 and 2019, the average daily jail population nationwide rose 19.4%,
       from 613,162 to 732,033 people. Over the same period, the state and federal prison
       population grew far more slowly, 7.2%, from 981,582 to 1,052,607.</p>
@@ -73,7 +108,7 @@
   </section>
 
   <section class="finding" id="racial-gap" style="--accent:var(--series-2)">
-    <h2><span class="finding-badge">2</span>A stark racial gap in who is jailed</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 21h10M4 7h16M4 7l-3 6a3 3 0 0 0 6 0l-3-6zM20 7l-3 6a3 3 0 0 0 6 0l-3-6z"/></svg></span>A stark racial gap in who is jailed</h2>
     <p>In 2019, Black adults were jailed at a rate of 822 per 100,000, more than three
       times the White rate of 265 per 100,000. Native American adults were also jailed at
       an elevated rate of 575 per 100,000, while Latinx adults were jailed at about the
@@ -85,7 +120,7 @@
   </section>
 
   <section class="finding" id="narrowing-gap" style="--accent:var(--series-3)">
-    <h2><span class="finding-badge">3</span>The Black&ndash;white jail gap has narrowed, but slowly</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l7 7 3-3 8 8M15 18h6v-6"/></svg></span>The Black&ndash;white jail gap has narrowed, but slowly</h2>
     <p>The ratio between Black and White jail incarceration rates fell from 5.56&times; in
       2000 to 3.11&times; in 2019. The gap has closed steadily over two decades, but Black
       adults were still jailed at more than three times the White rate as of the most
@@ -94,7 +129,7 @@
   </section>
 
   <section class="finding" id="rural-rate" style="--accent:var(--series-4)">
-    <h2><span class="finding-badge">4</span>Rural counties jail people at more than double the urban rate</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l4.5 6.5h-2.3l3.8 5.5h-2.6l3.6 5H9l3.6-5h-2.6l3.8-5.5h-2.3L12 2zM12 19v3"/></svg></span>Rural counties jail people at more than double the urban rate</h2>
     <p>In 2019, rural counties jailed people at a rate of 581 per 100,000 adults, more than
       double the urban rate of 271 per 100,000. Small and mid-sized counties sat in between
       at 415 per 100,000, while suburban counties had the lowest rate of the four, 267 per
@@ -106,7 +141,7 @@
   </section>
 
   <section class="finding" id="regional-gap" style="--accent:var(--series-5)">
-    <h2><span class="finding-badge">5</span>Geography matters: the South jails at twice the Northeast's rate</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Geography matters: the South jails at twice the Northeast's rate</h2>
     <p>In 2019, the South had a jail incarceration rate of 476 per 100,000 adults, roughly
       double the Northeast's rate of 232 per 100,000. The West (295) and Midwest (285) fell
       in between.</p>
@@ -114,16 +149,20 @@
   </section>
 
   <section class="finding" id="pretrial-share" style="--accent:var(--series-6)">
-    <h2><span class="finding-badge">6</span>Most people sitting in jail haven't been convicted of anything</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l6 6M10 8l6 6M2 22l8-8M6 12l6 6M4 22h7"/></svg></span>Most people sitting in jail haven't been convicted of anything</h2>
     <p>The share of the jail population held pretrial, meaning charged but not yet
       convicted, rose from 54.7% in 2000 to 63.3% in 2019. By the most recent complete
       year, nearly two out of every three people in jail on a given day were legally
       presumed innocent.</p>
     <div class="chart-card"><div class="chart-canvas-box"><canvas data-chart="pretrial-share"></canvas></div></div>
+    <div class="pictogram-card">
+      <div class="pictogram" id="pretrial-pictogram" aria-hidden="true"></div>
+      <p class="pictogram-caption" id="pretrial-pictogram-caption">Each icon is 1 out of every 100 people in jail in 2019.</p>
+    </div>
   </section>
 
   <section class="finding" id="gender-share" style="--accent:var(--series-7)">
-    <h2><span class="finding-badge">7</span>Women are a small but fast-growing share of the jail population</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 21v-1.5A4.5 4.5 0 0 1 7.5 15h3A4.5 4.5 0 0 1 15 19.5V21"/><circle cx="18" cy="7" r="2.4"/><path d="M15.5 15.2a4 4 0 0 1 5.5 3.7V21"/></svg></span>Women are a small but fast-growing share of the jail population</h2>
     <p>Women made up 11.8% of the jail population in 2000, rising to 14.5% by 2019. Men
       remain the large majority of people in jail, but the female share has grown in
       nearly every year of the last two decades.</p>
@@ -131,7 +170,7 @@
   </section>
 
   <section class="finding" id="overcrowding" style="--accent:var(--series-8)">
-    <h2><span class="finding-badge">8</span>Nearly a quarter of counties are jailing more people than their jails are built for</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v18M10 3v18M15 3v18M20 3v18M5 8h15M5 16h15"/></svg></span>Nearly a quarter of counties are jailing more people than their jails are built for</h2>
     <p>Comparing 2019 jail populations to each jail's rated capacity, 23.0% of the 2,796
       counties reporting a rated capacity exceeded it, and the national average
       utilization was 88.4% of rated capacity.</p>
@@ -139,7 +178,7 @@
   </section>
 
   <section class="finding" id="outlier-counties" style="--accent:var(--series-1)">
-    <h2><span class="finding-badge">9</span>A handful of counties post incarceration rates far above the national average</h2>
+    <h2><span class="finding-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V3M5 4h13l-3 4 3 4H5"/></svg></span>A handful of counties post incarceration rates far above the national average</h2>
     <p>The national incarceration rate (jail plus prison) was about 797 per 100,000 adults
       in 2019. Among counties with at least 50,000 working-age adults, the highest rate was
       in Bowie County, TX at 3,787 per 100,000 &mdash; nearly 5 times the national rate.</p>

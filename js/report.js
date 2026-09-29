@@ -199,6 +199,24 @@
     map.forEach((_link, target) => io.observe(target));
   }
 
+  function renderPictogram(percent) {
+    const grid = document.getElementById('pretrial-pictogram');
+    const caption = document.getElementById('pretrial-pictogram-caption');
+    if (!grid) return;
+    const filled = Math.round(percent);
+    const personSvg = (isFilled) =>
+      `<svg class="person${isFilled ? ' filled' : ''}" viewBox="0 0 10 14" width="9" height="13" fill="currentColor">
+        <circle cx="5" cy="3" r="3"/>
+        <path d="M0 14c0-4.4 2-6.6 5-6.6s5 2.2 5 6.6z"/>
+      </svg>`;
+    let html = '';
+    for (let i = 0; i < 100; i++) html += personSvg(i < filled);
+    grid.innerHTML = html;
+    if (caption) {
+      caption.innerHTML = `<strong>${filled} out of every 100</strong> people in jail on a given day in 2019 were awaiting trial, not yet convicted.`;
+    }
+  }
+
   initCountUps();
   initReveal();
   initScrollspy();
@@ -208,9 +226,11 @@
     .then((findings) => {
       findings.sections.forEach((section) => {
         const canvas = document.querySelector(`canvas[data-chart="${section.id}"]`);
-        if (!canvas) return;
-        if (section.chart.type === 'line') renderLine(canvas, section);
-        else renderBar(canvas, section);
+        if (canvas) {
+          if (section.chart.type === 'line') renderLine(canvas, section);
+          else renderBar(canvas, section);
+        }
+        if (section.pictogramPercent !== undefined) renderPictogram(section.pictogramPercent);
       });
     })
     .catch((err) => {

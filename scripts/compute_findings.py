@@ -217,6 +217,7 @@ def main() -> None:
                     "labels": list(pretrial_share_by_year.keys()),
                     "datasets": [{"label": "Pretrial share of jail population (%)", "data": list(pretrial_share_by_year.values())}],
                 },
+                "pictogramPercent": pretrial_share_by_year[2019],
             },
             {
                 "id": "gender-share",
