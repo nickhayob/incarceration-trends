@@ -1,4 +1,4 @@
-[Your Name]
-[Student ID]
+Nick Hayob
+100466487
 https://github.com/nickhayob/incarceration-trends
 https://nickhayob.github.io/incarceration-trends/
